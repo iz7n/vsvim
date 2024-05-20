@@ -13,7 +13,14 @@ vscode_nmap("<D-w>", ":q<CR>")
 vscode_nmap("<D-z>", "u")
 map({ "n", "i", "v" }, "<D-Z>", "<C-r>")
 
+map("n", "<CR>", "o")
 map("n", "<BS>", "i<BS>")
+
+-- Arrows
+map("v", "<Left>", "<Esc>i")
+map("v", "<Right>", "<Esc>a")
+map("v", "<Up>", "<Esc>ki")
+map("v", "<Down>", "<Esc>ji")
 
 -- Cmd + arrows
 map({ "n", "i" }, "<D-Left>", "<Esc>I")
@@ -56,10 +63,20 @@ map({ "n", "v" }, "<C-v>", "pi")
 map("i", "<C-v>", "<Esc>pi")
 
 -- Option + arrows
-map({ "n", "i" }, "<M-Up>", "<Esc>V:m '<-2<CR>gv=gv<Esc>i")
-map({ "n", "i" }, "<M-Down>", "<Esc>V:m '>+1<CR>gv=gv<Esc>i")
+map({ "n", "i" }, "<M-Left>", "<Esc>lbi")
+map({ "n", "i" }, "<M-Right>", "<Esc>ea")
+map({ "n", "i" }, "<M-Up>", "<Esc>V:m '<-2<CR>gv=gv<Esc>a")
+map({ "n", "i" }, "<M-Down>", "<Esc>V:m '>+1<CR>gv=gv<Esc>a")
 map("v", "<M-Up>", ":m '<-2<CR>gv=gv")
 map("v", "<M-Down>", ":m '>+1<CR>gv=gv")
+
+-- Shift + Option + arrows
+map({ "n", "i" }, "<M-S-Left>", "<Esc>vb")
+map({ "n", "i" }, "<M-S-Right>", "<Esc>ve")
+map("v", "<M-S-Left>", "b")
+map("v", "<M-S-Right>", "e")
+map("v", "<M-S-Up>", "k")
+map("v", "<M-S-Down>", "j")
 
 -- Comments
 map({ "n", "i" }, "<D-/>", "<Esc>gcci")
