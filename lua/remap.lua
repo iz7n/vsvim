@@ -56,12 +56,6 @@ map("v", "<D-S-Up>", "gg")
 map({ "n", "i" }, "<D-S-Down>", "<Esc>vG")
 map("v", "<D-S-Down>", "G")
 
--- Copy & paste
-map("v", "<D-c>", "y<Esc>i")
-map("v", "<BS>", "d<Esc>i")
-map({ "n", "v" }, "<C-v>", "pi")
-map("i", "<C-v>", "<Esc>pi")
-
 -- Option + arrows
 map({ "n", "i" }, "<M-Left>", "<Esc>lbi")
 map({ "n", "i" }, "<M-Right>", "<Esc>ea")
