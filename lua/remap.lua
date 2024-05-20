@@ -1,6 +1,5 @@
-local map = function(mode, lhs, rhs)
-	local opts = { noremap = true, silent = true }
-	vim.keymap.set(mode, lhs, rhs, opts)
+local map = function(mode, lhs, rhs, opts)
+	vim.keymap.set(mode, lhs, rhs, opts or { noremap = true, silent = true })
 end
 
 local vscode_nmap = function(lhs, rhs)
@@ -9,9 +8,10 @@ local vscode_nmap = function(lhs, rhs)
 end
 
 vscode_nmap("<D-s>", ":w<CR>")
-vscode_nmap("<D-w>", ":wq<CR>")
+vscode_nmap("<D-w>", ":q<CR>")
 
 vscode_nmap("<D-z>", "u")
+map({ "n", "i", "v" }, "<D-Z>", "<C-r>")
 
 map("n", "<BS>", "i<BS>")
 
@@ -26,17 +26,18 @@ map({ "n", "i" }, "<D-Down>", "<Esc>Gi")
 map("v", "<D-Down>", "G")
 
 -- Shift + arrows
-map("n", "<S-Down>", "v<Down>")
-map("n", "<S-Left>", "v<Left>")
-map("n", "<S-Right>", "v<Right>")
-map("v", "<S-Up>", "<Up>")
-map("v", "<S-Down>", "<Down>")
-map("v", "<S-Left>", "<Left>")
-map("v", "<S-Right>", "<Right>")
-map("i", "<S-Up>", "<Esc>v<Up>")
-map("i", "<S-Down>", "<Esc>v<Down>")
-map("i", "<S-Left>", "<Esc>v<Left>")
-map("i", "<S-Right>", "<Esc>v<Right>")
+map("n", "<S-Up>", "vk")
+map("n", "<S-Down>", "vj")
+map("n", "<S-Left>", "vh")
+map("n", "<S-Right>", "vl")
+map("i", "<S-Up>", "<Esc>vk")
+map("i", "<S-Down>", "<Esc>vj")
+map("i", "<S-Left>", "<Esc>vh")
+map("i", "<S-Right>", "<Esc>vl")
+map("v", "<S-Up>", "k")
+map("v", "<S-Down>", "j")
+map("v", "<S-Left>", "h")
+map("v", "<S-Right>", "l")
 
 -- Cmd + Shift + arrows
 map({ "n", "i" }, "<D-S-Left>", "<Esc>v^")
@@ -48,10 +49,18 @@ map("v", "<D-S-Up>", "gg")
 map({ "n", "i" }, "<D-S-Down>", "<Esc>vG")
 map("v", "<D-S-Down>", "G")
 
+-- Copy & paste
 map("v", "<D-c>", "y<Esc>i")
 map("v", "<BS>", "d<Esc>i")
 map({ "n", "v" }, "<C-v>", "pi")
 map("i", "<C-v>", "<Esc>pi")
 
-map("v", "J", ":m '>+1<CR>gv=gv")
-map("v", "K", ":m '<-2<CR>gv=gv")
+-- Option + arrows
+map({ "n", "i" }, "<M-Up>", "<Esc>V:m '<-2<CR>gv=gv<Esc>i")
+map({ "n", "i" }, "<M-Down>", "<Esc>V:m '>+1<CR>gv=gv<Esc>i")
+map("v", "<M-Up>", ":m '<-2<CR>gv=gv")
+map("v", "<M-Down>", ":m '>+1<CR>gv=gv")
+
+-- Comments
+map({ "n", "i" }, "<D-/>", "<Esc>gcci")
+map("v", "<D-/>", "<Esc>gc")

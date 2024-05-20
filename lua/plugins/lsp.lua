@@ -57,6 +57,8 @@ return {
 				nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 			end)
 
+			vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", { desc = "LSP: Restart" })
+
 			local lspconfig = require("lspconfig")
 
 			local on_init_no_format = function(client)
@@ -65,6 +67,13 @@ return {
 			end
 
 			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"lua_ls",
+					"tsserver",
+					"jsonls",
+					"eslint",
+					"svelte",
+				},
 				handlers = {
 					lsp_zero.default_setup,
 					lua_ls = function()
@@ -96,6 +105,13 @@ return {
 									buffer = bufnr,
 									command = "EslintFixAll",
 								})
+
+								vim.keymap.set(
+									{ "n", "i" },
+									"<D-M-.>",
+									"<Esc>:EslintFixAll<CR>i",
+									{ buffer = bufnr, desc = "Auto fix" }
+								)
 							end,
 						})
 					end,
@@ -106,8 +122,6 @@ return {
 					end,
 				},
 			})
-
-			vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", { desc = "LSP: Restart" })
 		end,
 	},
 }
