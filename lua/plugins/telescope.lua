@@ -26,7 +26,6 @@ return {
         telescope.load_extension("ui-select")
 
         local builtin = require("telescope.builtin")
-        vim.keymap.set("n", "<D-p>", builtin.find_files)
-        vim.keymap.set("v", "<D-f>", '"zy:Telescope live_grep default_text=<C-r>z<cr>')
+        vim.keymap.set("n", "<C-f>", builtin.live_grep, { desc = "[F]ile grep" })
     end,
 }
